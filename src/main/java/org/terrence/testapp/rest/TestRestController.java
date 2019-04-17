@@ -5,8 +5,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.terrence.testapp.Person;
-import org.terrence.testapp.PersonRepository;
+import org.terrence.testapp.domain.Person;
+import org.terrence.testapp.repositories.PersonRepository;
 
 @RestController
 public class TestRestController {
@@ -41,8 +41,10 @@ public class TestRestController {
           || (check.getId() != null && check.getId().equals(test.getId())))
           && ((check.getName() == null && test.getName() == null)
               || (check.getName() != null && check.getName().equals(test.getName())))) {
+        repo.deleteById(id);
         return "test passed: objects matched!";
       } else {
+        repo.deleteById(id);
         return "test failed: ojects do not match";
       }
     } catch (Exception e) {

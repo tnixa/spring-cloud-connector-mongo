@@ -1,4 +1,4 @@
-package org.terrence.testapp;
+package org.terrence.testapp.domain;
 
 public class Person {
 
